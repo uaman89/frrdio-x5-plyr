@@ -2,6 +2,8 @@ let myAudio = new Audio('http://94.23.53.96:500/;?icy=http');
 let types = ["audio/mpeg", "audio/ogg", "audio/mp4"];
 let suppInfoTxt = "";
 
+//context = new AudioContext();
+
 let streamList = [
     {title: "RadioRoks (aac?)", url: "http://online-radioroks.tavrmedia.ua:7000/RadioROKS_32"},
     {title: "Hubu.FM (showcast)", url: "http://94.23.53.96:500/;?icy=http"},
@@ -33,10 +35,29 @@ $('#streamList a').click(function(e) {
     myAudio.pause();
     console.log($(this));
     myAudio.src = $(this).data("stream");
+    myAudio.volume = $("#volumeControl").val();
     myAudio.play();
-    $("#dropdownMenuButton").text($(this).text());
+    let label = $(this).text();
+    $("#dropdownMenuButton").text(label);
+    myAudio.tracks = [];
+    myAudio.addTextTrack('metadata', label, "en"); // previously implemented as
+    //myAudio.addTextTrack( newTrack );
+    let track = myAudio.addTextTrack("captions", "English", "en");
+    track.mode = "showing";
+});
+
+setInterval(function(){
+    $("#time").text( Math.ceil( myAudio.currentTime ) + " sec." );
+},1000);
+
+
+$("#volumeControl").change( function(e){
+    let val = $(this).val();
+    console.log(`val:`, val);
+    myAudio.volume = val;
 });
 
 /**
  * Created by uaman on 12.03.2017.
  */
+

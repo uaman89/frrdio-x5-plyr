@@ -15,7 +15,9 @@
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
 
-    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+
+    <title>HTML5 player</title>
 </head>
 <body>
 
@@ -30,23 +32,31 @@
 
 <div class="d-flex justify-content-center py-5">
 
+    <div class="dropdown d-inline">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            loading...
+        </button>
+        <div id="streamList" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <!--<a class="dropdown-item" data-stream="http://94.23.53.96:500/;?icy=http" href="#">Hubu.FM (showcast)</a>-->
+        </div>
+    </div>
+
     <div class="btn-group">
         <button class="btn btn-primary" onclick="myAudio.play();">Play</button>
         <button class="btn btn-danger" onclick="myAudio.pause();">Pause</button>
     </div>
 
-    <div class="dropdown d-inline">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            Hubu.FM (showcast)
-        </button>
-        <div id="streamList" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" data-stream="http://94.23.53.96:500/;?icy=http" href="#">Hubu.FM (showcast)</a>
-            <a class="dropdown-item" data-stream="http://s2.radioboss.fm:8066/stream" href="#">DerFm</a>
-            <a class="dropdown-item" data-stream="http://energylove.ice.infomaniak.ch/energylove-high.mp3" href="#">energylove</a>
-        </div>
-    </div>
+    <span id="time" class="form-control" style="width:auto"></span>
+
 </div>
+
+<div class="d-flex justify-content-center">
+    <input id="volumeControl" type="range" max="1" min="0" step="0.001">
+</div>
+
+
+
 
 
 <script src="main.js"></script>

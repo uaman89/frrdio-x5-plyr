@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
 
 
 gulp.task('babel', () => {
@@ -17,14 +19,26 @@ gulp.task('html', () => {
 });
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['babel', 'html'], function() {
+gulp.task('serve', ['babel', 'sass', 'html'], function() {
 
     browserSync.init({
         server: "./dist"
     });
 
     gulp.watch("./src/main.js", ['babel']);
-    gulp.watch("./src/index.js", ['html']);
-    gulp.watch("./dist/index.html").on('change', browserSync.reload);
-    gulp.watch("./dist/main.js").on('change', browserSync.reload);
+    gulp.watch("./src/**/*.scss", ['sass']);
+    gulp.watch("./src/index.html", ['html']);
+
+    gulp.watch([
+        "./dist/index.html",
+        "./dist/main.js",
+        "./dist/style.css"
+    ]).on('change', browserSync.reload);
+});
+
+gulp.task('sass', function () {
+    return gulp.src('./src/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('style.css'))
+        .pipe(gulp.dest('./dist'));
 });
