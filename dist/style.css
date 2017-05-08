@@ -76,5 +76,11 @@
     margin-top: 0; }
 
 input[type=range] {
-  width: 50%;
   margin: 0 auto; }
+
+.player-wrapper {
+  width: min-content;
+  margin: 0 auto; }
+
+#time {
+  white-space: nowrap; }
