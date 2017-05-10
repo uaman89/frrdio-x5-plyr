@@ -4,7 +4,8 @@ function ajax(url, method = 'GET') {
         xhr.open(method, url);
         xhr.onload = function () {
             if (xhr.status === 200) {
-                alert('User\'s name is ' + xhr.responseText);
+                //alert('User\'s name is ' + xhr.responseText);
+                console.log(`xhr.response:`, xhr.response);
                 resolve(xhr.response);
             }
             else {

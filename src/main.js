@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.querySelector("#play").onclick = () => myAudio.play();
     document.querySelector("#stop").onclick = () => myAudio.pause();
 
-//context = new AudioContext();
 
     let streamList = [
         {title: "RadioRoks (aac?)", url: "http://online-radioroks.tavrmedia.ua:7000/RadioROKS_32"},
@@ -67,8 +66,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
         track.mode = "showing";
     });
 
+    let title = document.querySelector('.song-title');
+
     setInterval(function () {
         $("#time").text(Math.ceil(myAudio.currentTime) + " sec.");
+        //ajax(myAudio.src).then( response => title.value = response );
+        ajax('http://localhost:4040/?url='+myAudio.src).then( response => title.value = response );
     }, 1000);
 
 

@@ -4,33 +4,32 @@
 const Parser = require('icecast-parser');
 
 
+
 let url = 'http://stream.kissfm.ua:8000/KISSFM-2.0';
 //url = 'http://www.giss.tv:8000/Policajka_Sara.mp3';
 url = 'http://pub1.diforfree.org:8000/di_eurodance_hi';
 url = 'http://pub1.diforfree.org:8000/di_hardcore_hi';
 
-let radioStation = new Parser({
+const radioStation = new Parser({
     url: url,
     autoUpdate: true,
     metadataInterval: 15,
     emptyInterval: 10
 });
 
-radioStation.on('error', function (error) {
+radioStation.on('error', function(error) {
     console.log(['Connection to', this.getConfig('url'), 'was rejected'].join(' '));
 });
 
-radioStation.on('empty', function () {
+radioStation.on('empty', function() {
     console.log(['Radio station', this.getConfig('url'), 'doesn\'t have metadata'].join(' '));
 });
 
 let songsList = [];
-let lastSong = '';
 
-radioStation.on('metadata', function (metadata) {
+radioStation.on('metadata', function(metadata) {
     console.log(metadata.StreamTitle);
-    lastSong = metadata.StreamTitle;
-    if (songsList[0] != metadata.StreamTitle)
+    if ( songsList[0] != metadata.StreamTitle )
         songsList.unshift(metadata.StreamTitle);
 });
 
@@ -39,15 +38,13 @@ radioStation.on('metadata', function (metadata) {
 //     stream.pipe(process.stdout);
 // });
 
-setInterval(() => {
-    songsList.unshift('test');
-}, 300000);
+setInterval( () => { songsList.unshift('test'); }, 300000 );
 
 
 const express = require('express');
 const app = express();
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -57,16 +54,20 @@ app.use(function (req, res, next) {
 app.get('/', function (req, res) {
     let date = new Date();
     responce = `total: ${songsList.length}<br> list: <br> <strong> ${songsList.join('<br>')} </strong><hr>${date}`;
-    if (req.query.url) {
+    if (req.query.url){
         responce = songsList[0];
     }
-    res.send(responce);
-
-    //res.send( lastSong + Math.random() );
+    //res.send(responce);
+    const i = setInterval( ()=> {
+        res.send('no data');
+        console.log(`timeout`);
+    }, 5000);
+    radioStation.on('metadata', function(metadata) {
+        res.send(metadata.StreamTitle);
+        clearTimeout( i );
+        console.log(`clear interval`);
+    });
+    console.log(`end request`);
 });
 
 app.listen(4040);
-
-//TODO:
-// - figure out how to wait for on('metadata') event
-// - how to change url... or get new song by url

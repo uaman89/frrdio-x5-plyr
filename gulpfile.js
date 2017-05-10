@@ -59,7 +59,7 @@ gulp.task('default', ['js', 'sass', 'html'], function () {
         server: "./dist"
     });
 
-    gulp.watch("./src/main.js", ['js']);
+    gulp.watch("./src/*.js", ['js']);
     gulp.watch("./src/**/*.scss", ['sass']);
     gulp.watch("./src/index.html", ['html']);
 
