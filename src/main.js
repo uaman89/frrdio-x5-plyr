@@ -5,14 +5,20 @@ let types = ["audio/mpeg", "audio/ogg", "audio/mp4"];
 let suppInfoTxt = "";
 
 
-ajax('./test-song-title.txt').then( response => console.log(`response:`, response) );
-
 import { playerHtml } from './player.tpl'
+
+
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
     let script = document.querySelector("script[data-vendor=forradio]");
     let playerContainer = document.createElement("div");
+
+    function loadSongTitle(){
+        let serverUrl = 'http://localhost:4040/?url=' + myAudio.src;
+        ajax( serverUrl ).then( response => title.value = response );
+    }
+
     playerContainer.innerHTML = playerHtml;
     script.parentNode.insertBefore(playerContainer, script);
 
@@ -59,19 +65,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
         myAudio.play();
         let label = $(this).text();
         $("#dropdownMenuButton").text(label);
-        myAudio.tracks = [];
-        myAudio.addTextTrack('metadata', label, "en"); // previously implemented as
-        //myAudio.addTextTrack( newTrack );
-        let track = myAudio.addTextTrack("captions", "English", "en");
-        track.mode = "showing";
+
+        // myAudio.tracks = [];
+        // myAudio.addTextTrack('metadata', label, "en"); // previously implemented as
+        // myAudio.addTextTrack( newTrack );
+        // let track = myAudio.addTextTrack("captions", "English", "en");
+        // track.mode = "showing";
+
+        loadSongTitle();
     });
 
     let title = document.querySelector('.song-title');
 
+
     setInterval(function () {
         $("#time").text(Math.ceil(myAudio.currentTime) + " sec.");
-        //ajax(myAudio.src).then( response => title.value = response );
-        ajax('http://localhost:4040/?url='+myAudio.src).then( response => title.value = response );
+        loadSongTitle();
     }, 1000);
 
 
