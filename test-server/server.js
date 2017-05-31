@@ -9,39 +9,51 @@ let url = 'http://stream.kissfm.ua:8000/KISSFM-2.0';
 url = 'http://pub1.diforfree.org:8000/di_eurodance_hi';
 url = 'http://pub1.diforfree.org:8000/di_hardcore_hi';
 
-let radioStation = new Parser({
-    url: url,
-    autoUpdate: true,
-    metadataInterval: 15,
-    emptyInterval: 10
-});
+let songTitleByUrl = {};
 
-radioStation.on('error', function (error) {
-    console.log(['Connection to', this.getConfig('url'), 'was rejected'].join(' '));
-});
+function createStreamParser(streamUrl) {
 
-radioStation.on('empty', function () {
-    console.log(['Radio station', this.getConfig('url'), 'doesn\'t have metadata'].join(' '));
-});
+    return new Promise((resolve, reject) => {
 
-let songsList = [];
-let lastSong = '';
+        try {
 
-radioStation.on('metadata', function (metadata) {
-    console.log(metadata.StreamTitle);
-    lastSong = metadata.StreamTitle;
-    if (songsList[0] != metadata.StreamTitle)
-        songsList.unshift(metadata.StreamTitle);
-});
+            songTitleByUrl[streamUrl] = '-song-title-';
+
+            let isResolved = false;
+
+            let radioStation = new Parser({
+                url: streamUrl,
+                autoUpdate: true,
+                metadataInterval: 15,
+                emptyInterval: 10
+            });
+
+            radioStation.on('error', function (error) {
+                console.log(['Connection to', this.getConfig('url'), 'was rejected'].join(' '));
+            });
+
+            radioStation.on('empty', function () {
+                console.log(['Radio station', this.getConfig('url'), 'doesn\'t have metadata'].join(' '));
+                songTitleByUrl[streamUrl] = 'Radio station doesn\'t have metadata';
+            });
+
+            radioStation.on('metadata', function (metadata) {
+                console.log(metadata.StreamTitle);
+                songTitleByUrl[streamUrl] = metadata.StreamTitle;
+                if (!isResolved) {
+                    isResolved = true;
+                    resolve(radioStation.lastSong);
+                    console.log(`resolved!`);
+                    //TODO: add timeout
+                }
+            });
 
 
-// radioStation.on('stream', function(stream) {
-//     stream.pipe(process.stdout);
-// });
-
-setInterval(() => {
-    songsList.unshift('test');
-}, 300000);
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
 
 
 const express = require('express');
@@ -55,14 +67,31 @@ app.use(function (req, res, next) {
 
 
 app.get('/', function (req, res) {
-    let date = new Date();
-    responce = `total: ${songsList.length}<br> list: <br> <strong> ${songsList.join('<br>')} </strong><hr>${date}`;
-    if (req.query.url) {
-        responce = songsList[0];
-    }
-    res.send(responce);
 
-    //res.send( lastSong + Math.random() );
+    //let date = new Date();
+
+    response = `no streamUrl specified`;
+
+    if (req.query.url) {
+        response = '-response-';
+
+        //console.log(`req.query.url:`, req.query.url);
+
+        if (!songTitleByUrl[req.query.url]) {
+
+            console.log(`create new StreamParser`);
+
+            createStreamParser(req.query.url).then(
+                songTitle => { response = songTitle },
+                error => { console.log(`create error:`, error) }
+            );
+
+        }
+        else {
+            response = songTitleByUrl[req.query.url];
+        }
+    }
+    res.send(response);
 });
 
 app.listen(4040);
