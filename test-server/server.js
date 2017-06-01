@@ -3,12 +3,6 @@
  */
 const Parser = require('icecast-parser');
 
-
-let url = 'http://stream.kissfm.ua:8000/KISSFM-2.0';
-//url = 'http://www.giss.tv:8000/Policajka_Sara.mp3';
-url = 'http://pub1.diforfree.org:8000/di_eurodance_hi';
-url = 'http://pub1.diforfree.org:8000/di_hardcore_hi';
-
 let songTitleByUrl = {};
 
 function createStreamParser(streamUrl) {

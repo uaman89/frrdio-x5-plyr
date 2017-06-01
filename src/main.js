@@ -11,8 +11,12 @@ import { playerHtml } from './player.tpl'
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
-    let script = document.querySelector("script[data-vendor=forradio]");
-    let playerContainer = document.createElement("div");
+    const script = document.querySelector("script[data-vendor=forradio]");
+
+    const playerContainer = document.createElement("div");
+    const streamUrl = script.dataset.streamUrl;
+
+    console.log('streamUrl:', streamUrl);
 
     function loadSongTitle(){
         let serverUrl = 'http://localhost:4040/?url=' + myAudio.src;
@@ -37,6 +41,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
         {title: "DerFm", url: "http://s2.radioboss.fm:8066/stream"},
         {title: "energylove", url: "http://energylove.ice.infomaniak.ch/energylove-high.mp3"}
     ];
+
+    if ( streamUrl ){
+        streamList.push( { title: "by data-stream-url", url: streamUrl } );
+    }
 
     let streamListDropdown = $("#streamList");
 
@@ -78,10 +86,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     let title = document.querySelector('.song-title');
 
 
+
     setInterval(function () {
         $("#time").text(Math.ceil(myAudio.currentTime) + " sec.");
         loadSongTitle();
     }, 1000);
+
+
 
 
     $("#volumeControl").change(function (e) {
@@ -90,10 +101,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         myAudio.volume = val;
     });
 
-    // ajax("http://5.39.32.176/player/test-song-title.txt", (response)=>{
-    ajax("https://open.cinegy.com/robots.txt", (response)=>{
-        console.log(`response:`, response);
-    });
 
 });
 
