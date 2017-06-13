@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="689e45e0-f8b4-4ab4-a232-b06814fc0388" name="Default" comment="add url validation optimization (remember invalid urls)">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+    <list default="true" id="689e45e0-f8b4-4ab4-a232-b06814fc0388" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/NEW_VDS.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -317,7 +319,7 @@
       <workItem from="1497215013028" duration="6128000" />
       <workItem from="1497298022393" duration="860000" />
       <workItem from="1497383236328" duration="3398000" />
-      <workItem from="1497386883251" duration="2527000" />
+      <workItem from="1497386883251" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="add url validation optimization (remember invalid urls)">
       <created>1497389415338</created>
@@ -333,11 +335,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497389487279</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="remove .idea files">
+      <created>1497389559751</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497389559751</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15248000" />
+    <option name="totallyTimeSpent" value="15265000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1554" height="916" extended-state="6" />
@@ -403,7 +412,8 @@
       <path value="$PROJECT_DIR$/player" />
     </ignored-roots>
     <MESSAGE value="add url validation optimization (remember invalid urls)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add url validation optimization (remember invalid urls)" />
+    <MESSAGE value="remove .idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove .idea files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
