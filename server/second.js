@@ -3,6 +3,8 @@
  */
 const Parser = require('icecast-parser');
 
+const urlPattern = /^https?\:\/\/[-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6})?([-a-zA-Z0-9@:;%_\+.~#?&//=]*)$/m;
+
 let songTitleByUrl = {};
 
 function createStreamParser(streamUrl) {
@@ -11,7 +13,7 @@ function createStreamParser(streamUrl) {
 
         try {
 
-            songTitleByUrl[streamUrl] = '-song-title-';
+            songTitleByUrl[streamUrl] = 'loading...';
 
             let isResolved = false;
 
@@ -24,15 +26,17 @@ function createStreamParser(streamUrl) {
 
             radioStation.on('error', function (error) {
                 console.log(['Connection to', this.getConfig('url'), 'was rejected'].join(' '));
+                reject('error');
             });
 
             radioStation.on('empty', function () {
-                console.log(['Radio station', this.getConfig('url'), 'doesn\'t have metadata'].join(' '));
+                //console.log(['Radio station', this.getConfig('url'), 'doesn\'t have metadata'].join(' '));
                 songTitleByUrl[streamUrl] = 'Radio station doesn\'t have metadata';
+                resolve('');
             });
 
             radioStation.on('metadata', function (metadata) {
-                console.log(metadata.StreamTitle);
+                //console.log(metadata.StreamTitle);
                 songTitleByUrl[streamUrl] = metadata.StreamTitle;
                 if (!isResolved) {
                     isResolved = true;
@@ -42,6 +46,9 @@ function createStreamParser(streamUrl) {
                 }
             });
 
+            setTimeout(() => {
+                reject('error')
+            }, 5000);
 
         } catch (err) {
             reject(err);
@@ -61,34 +68,73 @@ app.use(function (req, res, next) {
 
 
 app.get('/', function (req, res) {
+    res.status(200).send("<a href=/player/statistic/song.php?YOUR_STREAM_URL_HERE>go to script page</a>");
+});
+
+app.get('/player/statistic/song.php', function (req, res) {
 
     //let date = new Date();
 
     response = `no streamUrl specified`;
 
-    if (req.query.url) {
-        response = '-response-';
+    var i = req.url.indexOf('?');
+    var query = req.url.substr(i + 1).split('&');
+    let url = query[0];
 
-        //console.log(`req.query.url:`, req.query.url);
 
-        if (!songTitleByUrl[req.query.url]) {
+    if (RegExp("^https?://", "m").test(url.trim())) {
+        url = `http://{$url}`;
+    }
 
-            console.log(`create new StreamParser`);
+    if (!urlPattern.test(url)) {
+        res.status(406).send(`Song=`);
+        console.log(`invalid url!`);
+        return;
+    }
+    else {
+        response = '';
 
-            createStreamParser(req.query.url).then(
-                songTitle => { response = songTitle },
-                error => { console.log(`create error:`, error) }
+        //console.log(`url:`, url);
+
+        if (songTitleByUrl[url] === undefined) {
+
+            console.log(`create new StreamParser for ${url}`);
+
+            createStreamParser(url).then(
+                songTitle => {
+                    res.status(200).send(`Song=${songTitle}`)
+                },
+                error => {
+                    console.log(`create error:`, error);
+                    res.status(500).send(`Song=error`);
+                }
             );
 
         }
         else {
-            response = songTitleByUrl[req.query.url];
+            response = songTitleByUrl[url];
+            res.status(200).send(`Song=${response}`);
         }
     }
-    res.send(response);
 });
 
-app.listen(4040);
+
+app.get("/crossdomain.xml", onCrossDomainHandler);
+function onCrossDomainHandler(req, res) {
+    var xml = '<?xml version="1.0"?>\n<!DOCTYPE cross-domain-policy SYSTEM' +
+        ' "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd">\n<cross-domain-policy>\n';
+    xml += '<allow-access-from domain="*" to-ports="*"/>\n';
+    xml += '</cross-domain-policy>\n';
+
+    req.setEncoding('utf8');
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(xml);
+}
+
+const port = 80;
+app.listen(port);
+
+console.log(`server is started!!! 5.39.32.176:${port}`);
 
 //TODO:
 // - figure out how to wait for on('metadata') event

@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log('streamUrl:', streamUrl);
 
     function loadSongTitle(){
-        let serverUrl = 'http://localhost:4040/?url=' + myAudio.src;
+        const origin = 'localhost';
+        //const origin = '5.39.32.176';
+        let serverUrl = `http://${origin}/player/statistic/song.php?` + myAudio.src;
         ajax( serverUrl ).then( response => title.value = response );
     }
 
@@ -90,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     setInterval(function () {
         $("#time").text(Math.ceil(myAudio.currentTime) + " sec.");
         loadSongTitle();
-    }, 1000);
+    }, 2000);
 
 
 

@@ -4,11 +4,11 @@
   "description": "",
   "main": "test.js",
   "scripts": {
-    "start": "npm run server1 && npm run save-pid",
+    "start": "((nohup node second.js) & echo $! > server.pid &) && echo \">>> Press enter to finish <<<\"",
+    "stop": "kill `cat server.pid`",
     "server1": "nohup node index &",
-    "server2": "nohup node second &",
-	"save-pid": "echo $! > node-instance.pid",
-    "stop-server": "kill `cat node-instance.pid`"
+    "server2": "nohup node second.js &",
+	"save-pid": "echo $! > server.pid"
   },
   "author": "",
   "license": "ISC",

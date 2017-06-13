@@ -9,5 +9,5 @@ $ npm start
 ## To stop server
 
 ```
-$ npm run stop-server
+$ npm stop
 ```
