@@ -3,9 +3,9 @@
  */
 const Parser = require('icecast-parser');
 
-const urlPattern = /^https?\:\/\/[-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6})?([-a-zA-Z0-9@:;%_\+.~#?&//=]*)$/m;
+const urlPattern = /^https?\:\/\/(([-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6}))|([0-9]))([-a-zA-Z0-9@:;%_\+.~#?&//=]*)$/m;
 
-let songTitleByUrl = {};
+let songTitleByUrl = {}, invalidUrlsList = {};
 
 function createStreamParser(streamUrl) {
 
@@ -79,16 +79,23 @@ app.get('/player/statistic/song.php', function (req, res) {
 
     var i = req.url.indexOf('?');
     var query = req.url.substr(i + 1).split('&');
-    let url = query[0];
 
+    if ( invalidUrlsList[ query[0] ] ){
+        res.status(406).send('Song=');
+        return;
+    }
 
-    if (RegExp("^https?://", "m").test(url.trim())) {
-        url = `http://{$url}`;
+    let url = query[0].trim();
+
+    url = url.replace(/^\/\//m, 'http://');
+    if (!RegExp("^https?://", "m").test(url)) {
+        url = `http://${url}`;
     }
 
     if (!urlPattern.test(url)) {
         res.status(406).send(`Song=`);
-        console.log(`invalid url!`);
+        console.log(`invalid url: ${ query[0] }`);
+        invalidUrlsList[ query[0] ]=1;
         return;
     }
     else {
@@ -98,7 +105,7 @@ app.get('/player/statistic/song.php', function (req, res) {
 
         if (songTitleByUrl[url] === undefined) {
 
-            console.log(`create new StreamParser for ${url}`);
+            console.log(`create new StreamParser for ${ query[0] }`);
 
             createStreamParser(url).then(
                 songTitle => {
