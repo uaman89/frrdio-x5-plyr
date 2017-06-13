@@ -25,13 +25,14 @@ function createStreamParser(streamUrl) {
             });
 
             radioStation.on('error', function (error) {
-                console.log(['Connection to', this.getConfig('url'), 'was rejected'].join(' '));
-                reject('error');
+                let msg = ['Connection to', this.getConfig('url'), 'was rejected'].join(' ');
+                //console.log(msg);
+                reject(msg);
             });
 
             radioStation.on('empty', function () {
                 //console.log(['Radio station', this.getConfig('url'), 'doesn\'t have metadata'].join(' '));
-                songTitleByUrl[streamUrl] = 'Radio station doesn\'t have metadata';
+                songTitleByUrl[streamUrl] = '';
                 resolve('');
             });
 
@@ -40,14 +41,12 @@ function createStreamParser(streamUrl) {
                 songTitleByUrl[streamUrl] = metadata.StreamTitle;
                 if (!isResolved) {
                     isResolved = true;
-                    resolve(radioStation.lastSong);
-                    console.log(`resolved!`);
-                    //TODO: add timeout
+                    resolve(metadata.StreamTitle);
                 }
             });
 
             setTimeout(() => {
-                reject('error')
+                reject(`${streamUrl}: timeout 5 sec.`)
             }, 5000);
 
         } catch (err) {
@@ -109,10 +108,11 @@ app.get('/player/statistic/song.php', function (req, res) {
 
             createStreamParser(url).then(
                 songTitle => {
+                    console.log(`success: ${url} - has title!`);
                     res.status(200).send(`Song=${songTitle}`)
                 },
                 error => {
-                    console.log(`create error:`, error);
+                    console.log(`error:`, error);
                     res.status(500).send(`Song=error`);
                 }
             );
@@ -141,7 +141,7 @@ function onCrossDomainHandler(req, res) {
 const port = 80;
 app.listen(port);
 
-console.log(`server is started!!! 5.39.32.176:${port}`);
+console.log(`server is started!!! 5.39.32.176:${port} at ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
 
 //TODO:
 // - figure out how to wait for on('metadata') event

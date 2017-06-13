@@ -4,7 +4,7 @@
   "description": "",
   "main": "test.js",
   "scripts": {
-    "start": "((nohup node second.js) & echo $! > server.pid &) && echo \">>> Press enter to finish <<<\"",
+    "start": "> nohup.out && ((nohup node second.js) & echo $! > server.pid &) && echo \">>> Press enter to finish <<<\"",
     "stop": "kill `cat server.pid`",
     "server1": "nohup node index &",
     "server2": "nohup node second.js &",
