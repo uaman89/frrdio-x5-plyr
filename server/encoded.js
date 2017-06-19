@@ -116,18 +116,18 @@ app.get('/player/statistic/song.php', function (req, res) {
             createStreamParser(url).then(
                 songTitle => {
                     console.log(`success: ${url} - has title!`);
-                    res.status(200).send(`Song=${songTitle}`)
+                    res.status(200).send(`${songTitle}`)
                 },
                 error => {
                     console.log(`error:`, error);
-                    res.status(500).send(`Song=error`);
+                    res.status(500).send(`error`);
                 }
             );
 
         }
         else {
             response = songTitleByUrl[url];
-            res.status(200).send(`Song=${response}`);
+            res.status(200).send(`${response}`);
         }
     }
 });

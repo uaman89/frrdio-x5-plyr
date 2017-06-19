@@ -8,11 +8,13 @@
     "stop": "kill `cat server.pid`",
     "server1": "nohup node index &",
     "server2": "nohup node second.js &",
-	"save-pid": "echo $! > server.pid"
+    "save-pid": "echo $! > server.pid",
+    "start-local": "node second"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto-xor": "^1.1.0",
     "express": "^4.15.0",
     "icecast": "^1.3.1",
     "icecast-parser": "^2.0.0"

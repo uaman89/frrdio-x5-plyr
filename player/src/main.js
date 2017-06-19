@@ -1,12 +1,16 @@
-import {ajax} from "./ajax";
+import { ajax } from "./ajax";
+import { decode } from "crypto-xor";
+import { playerHtml } from './player.tpl'
 
-let myAudio = new Audio('http://94.23.53.96:500/;?icy=http');
+console.clear();
+
+const myAudio = new Audio('http://94.23.53.96:500/;?icy=http');
 let types = ["audio/mpeg", "audio/ogg", "audio/mp4"];
 let suppInfoTxt = "";
 
-
-import { playerHtml } from './player.tpl'
-
+const symmetricKey = 'JaySoy4Rewa';
+// let res = decode('080417390e145d3c453508250d182a4f54141a0a05126a2d1873391051', symmetricKey);
+// console.log(`res:`, res);
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -22,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         const origin = 'localhost';
         //const origin = '5.39.32.176';
         let serverUrl = `http://${origin}/player/statistic/song.php?` + myAudio.src;
-        ajax( serverUrl ).then( response => title.value = response );
+        ajax( serverUrl ).then( response => title.value = decode(response,symmetricKey) );
     }
 
     playerContainer.innerHTML = playerHtml;
@@ -105,4 +109,5 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
 });
+
 

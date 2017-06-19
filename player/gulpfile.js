@@ -2,11 +2,12 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
-const gulpMerge = require('gulp-merge');
-const rollup     = require('gulp-better-rollup');
-const babel = require('gulp-babel');
+//const gulpMerge = require('gulp-merge');
+
+var webpackStream = require('webpack-stream');
+var webpack2 = require('webpack');
+
 const sourcemaps = require('gulp-sourcemaps');
-//const obfuscate = require('gulp-obfuscate');
 const obfuscate = require('gulp-javascript-obfuscator');
 const uglify = require('gulp-uglify');
 const pump = require('pump');
@@ -17,9 +18,31 @@ gulp.task('js', (cb) => {
         gulp.src('./src/main.js'),
         sourcemaps.init(),
         // transform the files here.
+        //webpack( require('./webpack.config.js') ),
+
+        webpackStream( require('./webpack.config.js'), webpack2 ),
+
+        // babel({
+        //     "presets": ['es2015']
+        // }),
+        concat('player.js'),
+        //uglify(),
+        obfuscate(),
+        sourcemaps.write(),
+        gulp.dest('./dist')
+    ],cb);
+});
+
+gulp.task('jsOld', (cb) => {
+
+    pump([
+        gulp.src('./src/main.js'),
+        sourcemaps.init(),
+        // transform the files here.
         rollup({
             entry: './src/main.js',
-            format: 'iife'
+            format: 'iife',
+            plugins : [ npm({jsnext : true}), commonjs() ],
         }),
         babel({
             "presets": ['es2015']
