@@ -32,6 +32,6 @@ module.exports = {
         new webpack2.DefinePlugin({
             'process.env': { 'NODE_ENV': "'production'" }
         }),
-        new webpack2.optimize.UglifyJsPlugin()
+        //new webpack2.optimize.UglifyJsPlugin()
     ],
 };

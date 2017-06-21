@@ -358,6 +358,7 @@ Q 34.75 4.65 34 3.2 Z"/>
         </g>
 
         <g mask="url(#Mask_Mask_3)">
+            <text id="songTitle" x="0" y="27" fill="white" style="font-size: 12px;">&lt;Energy&gt;</text>
             <g filter="url(#Filter_4)" transform="matrix( 1, 0, 0, 1, -16.35,-17.25) ">
                 <g transform="matrix( 1.2603607177734375, 0, 0, 1.12396240234375, 108.9,14.1) ">
                     <g transform="matrix( 1, 0, 0, 1, -104.5,0.4) ">

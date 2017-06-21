@@ -9,7 +9,7 @@ function ajax(url, method = 'GET') {
                 resolve(xhr.response);
             }
             else {
-                alert('Request failed.  Returned status of ' + xhr.status);
+                //alert('Request failed.  Returned status of ' + xhr.status);
                 reject('Request failed.  Returned status of ' + xhr.status);
             }
         };

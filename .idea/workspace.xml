@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0bb4772-6e34-4c9e-b17f-71bbe3246d0b" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/player/src/nrg/nrg.tpl.js" afterPath="$PROJECT_DIR$/player/src/nrg/nrg.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/player/src/nrg/style.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/gulpfile.js" afterPath="$PROJECT_DIR$/player/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/src/alpha/alpha.js" afterPath="$PROJECT_DIR$/player/src/alpha/alpha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/src/index.html" afterPath="$PROJECT_DIR$/player/src/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/src/ajax.js" afterPath="$PROJECT_DIR$/player/src/ajax.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/src/nrg/nrg.js" afterPath="$PROJECT_DIR$/player/src/nrg/nrg.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/src/nrg/nrg.svg" afterPath="$PROJECT_DIR$/player/src/nrg/nrg.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/player/webpack.config.js" afterPath="$PROJECT_DIR$/player/webpack.config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,11 +22,33 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="range.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/player/src/alpha/range.scss">
+      <file leaf-file-name="nrg.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/player/src/nrg/nrg.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="269">
+              <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/player/webpack.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/player/src/nrg/style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -36,8 +57,8 @@
       <file leaf-file-name="alpha.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/player/src/alpha/alpha.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="63" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="63" />
+            <state relative-caret-position="278">
+              <caret line="38" column="65" lean-forward="false" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="65" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -45,64 +66,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/player/src/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nrg.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/player/src/nrg/nrg.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/player/gulpfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="78" column="26" lean-forward="false" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/player/src/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/player/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="nrg.svg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/player/src/nrg/nrg.svg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="370" column="22" lean-forward="false" selection-start-line="370" selection-start-column="11" selection-end-line="370" selection-end-column="22" />
+            <state relative-caret-position="222">
+              <caret line="360" column="44" lean-forward="false" selection-start-line="360" selection-start-column="44" selection-end-line="360" selection-end-column="44" />
               <folding>
+                <element signature="e#12840#12844#0" expanded="true" />
+                <element signature="e#12850#12854#0" expanded="true" />
                 <element signature="n#g#0;n#g#5;n#svg#0;n#!!top" expanded="false" />
                 <element signature="n#g#1;n#g#5;n#svg#0;n#!!top" expanded="false" />
               </folding>
@@ -135,6 +106,9 @@
       <find>alpha.j</find>
       <find>alpha.js</find>
       <find>types</find>
+      <find>playStopBtn</find>
+      <find>.value</find>
+      <find>title</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -158,12 +132,14 @@
         <option value="$PROJECT_DIR$/player/src/alpha/main-old.js" />
         <option value="$PROJECT_DIR$/player/src/nrg/nrg.tpl.js" />
         <option value="$PROJECT_DIR$/player/src/main.js" />
-        <option value="$PROJECT_DIR$/player/webpack.config.js" />
         <option value="$PROJECT_DIR$/player/gulpfile.js" />
-        <option value="$PROJECT_DIR$/player/src/nrg/nrg.svg" />
-        <option value="$PROJECT_DIR$/player/src/nrg/nrg.js" />
         <option value="$PROJECT_DIR$/player/src/alpha/alpha.js" />
         <option value="$PROJECT_DIR$/player/src/index.html" />
+        <option value="$PROJECT_DIR$/player/src/ajax.js" />
+        <option value="$PROJECT_DIR$/player/src/nrg/nrg.svg" />
+        <option value="$PROJECT_DIR$/player/src/nrg/style.scss" />
+        <option value="$PROJECT_DIR$/player/webpack.config.js" />
+        <option value="$PROJECT_DIR$/player/src/nrg/nrg.js" />
       </list>
     </option>
   </component>
@@ -504,8 +480,8 @@
     <recent_temporary>
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Gulp.js.default" />
-        <item index="1" class="java.lang.String" itemvalue="Gulp.js.js" />
-        <item index="2" class="java.lang.String" itemvalue="Node.js.encoded.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.encoded.js" />
+        <item index="2" class="java.lang.String" itemvalue="Gulp.js.js" />
         <item index="3" class="java.lang.String" itemvalue="npm.start-local" />
       </list>
     </recent_temporary>
@@ -524,7 +500,7 @@
       <workItem from="1497389773953" duration="2320000" />
       <workItem from="1497392179071" duration="44000" />
       <workItem from="1497894191097" duration="10611000" />
-      <workItem from="1498068093876" duration="5718000" />
+      <workItem from="1498068093876" duration="7545000" />
     </task>
     <task id="LOCAL-00001" summary="add deployment settings">
       <created>1497390031366</created>
@@ -554,11 +530,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498074690705</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="move test audio formats supporting  out from player code">
+      <created>1498077117803</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1498077117803</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20643000" />
+    <option name="totallyTimeSpent" value="22470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1554" height="916" extended-state="6" />
@@ -624,7 +607,8 @@
     <MESSAGE value="clean nohup.out when npm start runs&#10;fix &quot;undefined&quot; title at first request&#10;update &quot;log&quot; in nohup.out" />
     <MESSAGE value="clean gulpfile.js" />
     <MESSAGE value="add svg-player into player/src" />
-    <option name="LAST_COMMIT_MESSAGE" value="add svg-player into player/src" />
+    <MESSAGE value="move test audio formats supporting  out from player code" />
+    <option name="LAST_COMMIT_MESSAGE" value="move test audio formats supporting  out from player code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -633,22 +617,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/second.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -949,14 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/player/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/player/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -973,42 +933,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/player/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player/src/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/player/src/nrg/nrg.svg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="370" column="22" lean-forward="false" selection-start-line="370" selection-start-column="11" selection-end-line="370" selection-end-column="22" />
+        <state relative-caret-position="222">
+          <caret line="360" column="44" lean-forward="false" selection-start-line="360" selection-start-column="44" selection-end-line="360" selection-end-column="44" />
           <folding>
+            <element signature="e#12840#12844#0" expanded="true" />
+            <element signature="e#12850#12854#0" expanded="true" />
             <element signature="n#g#0;n#g#5;n#svg#0;n#!!top" expanded="false" />
             <element signature="n#g#1;n#g#5;n#svg#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/player/src/nrg/nrg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/player/src/alpha/alpha.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="63" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="63" />
+        <state relative-caret-position="278">
+          <caret line="38" column="65" lean-forward="false" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="65" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/player/src/index.html">
+    <entry file="file://$PROJECT_DIR$/player/src/nrg/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+        <state relative-caret-position="51">
+          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/player/src/nrg/nrg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
