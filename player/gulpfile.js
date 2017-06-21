@@ -29,11 +29,11 @@ gulp.task('js', (cb) => {
 gulp.task('jsOld', (cb) => {
 
     pump([
-        gulp.src('./src/main.js'),
+        gulp.src('./src/alpha.js'),
         sourcemaps.init(),
         // transform the files here.
         rollup({
-            entry: './src/main.js',
+            entry: './src/alpha.js',
             format: 'iife',
             plugins : [ npm({jsnext : true}), commonjs() ],
         }),

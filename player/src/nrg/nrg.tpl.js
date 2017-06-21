@@ -1,4 +1,4 @@
-
+export const playerHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="180px" height="75px" viewBox="0 0 180 75">
 <defs>
 <filter id="Filter_1" x="-20%" y="-46.13937898811532%" width="140%" height="192.27875797623062%" color-interpolation-filters="sRGB">
@@ -395,3 +395,4 @@ Q 34.75 4.65 34 3.2 Z"/>
 </g>
 </g>
 </svg>
+`;
