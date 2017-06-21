@@ -5,8 +5,6 @@ import { playerHtml } from './player.tpl'
 console.clear();
 
 const myAudio = new Audio('http://94.23.53.96:500/;?icy=http');
-let types = ["audio/mpeg", "audio/ogg", "audio/mp4"];
-let suppInfoTxt = "";
 
 const symmetricKey = 'JaySoy4Rewa';
 // let res = decode('080417390e145d3c453508250d182a4f54141a0a05126a2d1873391051', symmetricKey);
@@ -60,14 +58,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     $("#dropdownMenuButton").text(streamList[0].title);
     myAudio.src = streamList[0].url;
-
-
-    types.forEach(function (type) {
-        let isSupp = myAudio.canPlayType(type);
-        suppInfoTxt += type + ":" + isSupp + '<br>';
-        console.log(type, ":", isSupp);
-    });
-    $("#suppInfo span").html(suppInfoTxt);
 
 
     $('#streamList a').click(function (e) {

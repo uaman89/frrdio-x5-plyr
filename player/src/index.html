@@ -29,7 +29,19 @@
         <span></span>
     </div>
 </div>
+<script>
+    let types = ["audio/mpeg", "audio/ogg", "audio/mp4"];
+    let suppInfoTxt = "";
 
+    types.forEach(function (type) {
+        let testAudio = new Audio('http://94.23.53.96:500/;?icy=http');
+        let isSupp = testAudio.canPlayType(type);
+        suppInfoTxt += type + ":" + isSupp + '<br>';
+        console.log(type, ":", isSupp);
+        testAudio = null;
+    });
+    $("#suppInfo span").html(suppInfoTxt);
+</script>
 
 <script src="player.js" data-stream-url="http://energylove.ice.infomaniak.ch/energylove-high.mp3" data-vendor="forradio"></script>
 

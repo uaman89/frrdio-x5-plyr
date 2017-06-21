@@ -1,6 +1,7 @@
-import { ajax } from "../ajax";
-import { decode } from "crypto-xor";
-import { playerHtml } from './nrg.tpl'
+import {ajax} from "../ajax";
+import {decode} from "crypto-xor";
+
+playerHtml = require('./nrg.svg');
 
 console.clear();
 
@@ -17,15 +18,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const script = document.querySelector("script[data-vendor=forradio]");
 
     const playerContainer = document.createElement("div");
+    playerContainer.id = "energyPLayerForradio";
+
     const streamUrl = script.dataset.streamUrl;
 
     console.log('streamUrl:', streamUrl);
 
-    function loadSongTitle(){
+    function loadSongTitle() {
         const origin = 'localhost';
         //const origin = '5.39.32.176';
         let serverUrl = `http://${origin}/player/statistic/song.php?` + myAudio.src;
-        ajax( serverUrl ).then( response => title.value = decode(response,symmetricKey) );
+        ajax(serverUrl).then(response => title.value = decode(response, symmetricKey));
     }
 
     playerContainer.innerHTML = playerHtml;
@@ -36,8 +39,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //console.log(`playerContainerId:`, playerContainerId);
     //document.querySelector(`#${playerContainerId}`).innerHTML = playerHtml;
 
-    document.querySelector("#play").onclick = () => myAudio.play();
-    document.querySelector("#stop").onclick = () => myAudio.pause();
+    let isPlayerOn = false;
+    document.querySelector("#playStopBtn").onclick = () => {
+        if ( isPlayerOn ) {
+            myAudio.stop();
+        } else {
+            myAudio.play();
+        }
+        isPlayerOn = !isPlayerOn;
+        console.log(`isPlayerOn:`, isPlayerOn);
+    };
 
 
     let streamList = [
@@ -47,26 +58,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
         {title: "energylove", url: "http://energylove.ice.infomaniak.ch/energylove-high.mp3"}
     ];
 
-    if ( streamUrl ){
-        streamList.push( { title: "by data-stream-url", url: streamUrl } );
+    if (streamUrl) {
+        streamList.push({title: "by data-stream-url", url: streamUrl});
     }
 
     let streamListDropdown = $("#streamList");
 
-    streamList.forEach((item)=> {
+    streamList.forEach((item) => {
         streamListDropdown.append(`<a class="dropdown-item" data-stream="${item.url}" href="#">${item.title}</a>`);
     });
 
     $("#dropdownMenuButton").text(streamList[0].title);
     myAudio.src = streamList[0].url;
-
-
-    types.forEach(function (type) {
-        let isSupp = myAudio.canPlayType(type);
-        suppInfoTxt += type + ":" + isSupp + '<br>';
-        console.log(type, ":", isSupp);
-    });
-    $("#suppInfo span").html(suppInfoTxt);
 
 
     $('#streamList a').click(function (e) {
@@ -91,13 +94,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     let title = document.querySelector('.song-title');
 
 
-
     setInterval(function () {
         $("#time").text(Math.ceil(myAudio.currentTime) + " sec.");
         loadSongTitle();
     }, 2000);
-
-
 
 
     $("#volumeControl").change(function (e) {

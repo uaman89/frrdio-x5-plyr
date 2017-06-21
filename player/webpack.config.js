@@ -19,8 +19,13 @@ module.exports = {
                 }],
             },
 
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            }
+
             // Loaders for other file types can go here
-        ],
+        ]
     },
 
     plugins: [
