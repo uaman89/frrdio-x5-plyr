@@ -9,7 +9,7 @@ var webpack2 = require('webpack');
 
 const sourcemaps = require('gulp-sourcemaps');
 const obfuscate = require('gulp-javascript-obfuscator');
-const uglify = require('gulp-uglify');
+//const uglify = require('gulp-uglify');
 const pump = require('pump');
 
 gulp.task('js', (cb) => {
@@ -17,22 +17,15 @@ gulp.task('js', (cb) => {
     pump([
         gulp.src('./src/main.js'),
         sourcemaps.init(),
-        // transform the files here.
-        //webpack( require('./webpack.config.js') ),
-
         webpackStream( require('./webpack.config.js'), webpack2 ),
-
-        // babel({
-        //     "presets": ['es2015']
-        // }),
         concat('player.js'),
-        //uglify(),
         obfuscate(),
         sourcemaps.write(),
         gulp.dest('./dist')
     ],cb);
 });
 
+/*
 gulp.task('jsOld', (cb) => {
 
     pump([
@@ -54,6 +47,7 @@ gulp.task('jsOld', (cb) => {
         gulp.dest('./dist')
     ],cb);
 });
+*/
 
 
 // html
