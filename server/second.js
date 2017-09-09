@@ -1,7 +1,3 @@
-const cryptoXor = require('crypto-xor');
-const symmetricKey = 'JaySoy4Rewa';
-
-
 /**
  * Created by uaman on 28.02.2017.
  */
@@ -42,13 +38,10 @@ function createStreamParser(streamUrl) {
 
             radioStation.on('metadata', function (metadata) {
                 //console.log(metadata.StreamTitle);
-
-                //songTitleByUrl[streamUrl] = metadata.StreamTitle;
-                songTitleByUrl[streamUrl] = cryptoXor.encode(metadata.StreamTitle, symmetricKey);
-
+                songTitleByUrl[streamUrl] = metadata.StreamTitle;
                 if (!isResolved) {
                     isResolved = true;
-                    resolve(songTitleByUrl[streamUrl]);
+                    resolve(metadata.StreamTitle);
                 }
             });
 

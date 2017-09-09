@@ -1,7 +1,13 @@
+##
+First launch (install)
+```
+    $ npm i
+```
+
 ## To start server
 
 ```
-$ npm start
+    $ npm start
 ```
 
 ---
@@ -9,5 +15,5 @@ $ npm start
 ## To stop server
 
 ```
-$ npm stop
+    $ npm stop
 ```

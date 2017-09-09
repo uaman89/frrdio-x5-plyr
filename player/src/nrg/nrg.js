@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     function loadSongTitle() {
-        const origin = 'localhost';
-        //const origin = '5.39.32.176';
+        const origin = '5.39.32.176';
+        //const origin = 'localhost';
         let serverUrl = `http://${origin}/player/statistic/song.php?` + myAudio.src;
         ajax(serverUrl).then(
             response => title.innerHTML = decode(response, symmetricKey),
